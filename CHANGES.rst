@@ -1,6 +1,6 @@
 Changelog (nionswift-eels-analysis)
 ===================================
-Test
+
 0.4.4 (2019-10-24)
 ------------------
 - Changed shift method in ZLP subpixel align to scipy.ndimage.shift with linear interpolation to get rid of artifacts.
