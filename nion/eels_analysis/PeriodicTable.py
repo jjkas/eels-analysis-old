@@ -61,7 +61,9 @@ class ElectronShell:
 
     @property
     def subshell_label(self) -> str:
-        subshell_labels = ('a', 's', 'd', 'f', 'g', 'h', 'i', 'j')
+        # J. Kas - Deleted 'a' from zeroth index since azimuthal_quantum_number
+        #          runs from 0 (s-states) to 4 (f-states).
+        subshell_labels = ('s', 'd', 'f', 'g', 'h', 'i', 'j')
         return subshell_labels[self.azimuthal_quantum_number]
 
     @property
