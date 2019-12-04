@@ -135,12 +135,13 @@ class PeriodicTable(metaclass=Singleton):
                                  
                     # J. Kas - If energy of edge is withing range, add the shell to the list. 
                     if energy_interval_ev[0] <= energy <= energy_interval_ev[1]:
-                        edges.append((energy, electron_shell))
+                        edges.append((abs(energy-energy_interval_center_ev), electron_shell))
 
-                    edges.sort(key=operator.itemgetter(0))
-        #for edge in edges:
-        #    print(edge[1].subshell_index,edge[1].get_shell_str_in_eels_notation(include_subshell=True))
-        return [edge[1] for edge in edges]
+            if len(edges) > 0:
+                edges.sort(key=operator.itemgetter(0))
+                return [edge[1] for edge in edges]
+            else:
+                return None
 
 
 
