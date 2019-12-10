@@ -60,7 +60,7 @@ class TestLibrary(unittest.TestCase):
     def test_stoichiometry_found_from_experimental_eels(self):
         # Read EELS data from file (BN). This is data from Tracy, taken from a thin part of the sample,
         # and represents to some extent a best case scenario.
-        data_file = Path('./Test_Data/eelsdbBN.csv')
+        data_file = Path('./Test_Data/BN0-0910eV.msa')
         #data_file = Path('./Test_Data/EELS_Thick.csv')
         #data_file = Path('./Test_Data/EELS_Thin.csv')
         
@@ -68,18 +68,18 @@ class TestLibrary(unittest.TestCase):
         
         # Set up input to stoichiometry quantification. All settings are hard coded to
         # BN to match DM 2.32.888.
-        atomic_numbers=[5,7]
+        atomic_numbers=[7,5]
         edge_label = 'K'
         beam_energy_keV = 200.0
         convergence_angle_mrad = 0.0
         collection_angle_mrad = 100.0     
-        edge_onsets = [188.0, 401.0]
+        edge_onsets = [401.0, 188.0]
         edge_deltas = [25.0, 25.0]
         background_ranges = [numpy.zeros(2),numpy.zeros(2)]
-        background_ranges[0][0] = 167.0
-        background_ranges[0][1] = 183.0
-        background_ranges[1][0] = 358.0
-        background_ranges[1][1] = 393.0
+        background_ranges[1][0] = 167.0
+        background_ranges[1][1] = 183.0
+        background_ranges[0][0] = 358.0
+        background_ranges[0][1] = 393.0
             
         erange = numpy.zeros(2)
         erange[0] = energy_grid[0]
@@ -89,10 +89,13 @@ class TestLibrary(unittest.TestCase):
                                                 beam_energy_keV*1000.0, convergence_angle_mrad/1000.0, collection_angle_mrad/1000.0)
         
         iAtom = 0
+        DM_Stoichometry = [1.0, 0.83]
+        stoichiometry_ubuntu = [1.0,0.84419776]
         print('Stoichiometry for BN from experimental EELS data from the EELS Atlas:')
+        print('atomic#, N, N from DM')
         for atomic_number in atomic_numbers:
-            print(atomic_number, stoichiometry[iAtom])            
-            #assert abs(stoichiometry[iAtom]/amps[iAtom]*amps[0]-1.0) < 0.01 # Test stoichiometry found is better than 1%
+            print(atomic_number, stoichiometry[iAtom][0], DM_Stoichometry[iAtom])
+        
             iAtom += 1
 
             
