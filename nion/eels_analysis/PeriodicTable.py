@@ -63,13 +63,13 @@ class ElectronShell:
     def subshell_label(self) -> str:
         # J. Kas - Deleted 'a' from zeroth index since azimuthal_quantum_number
         #          runs from 0 (s-states) to 4 (f-states).
-        subshell_labels = ('s', 'd', 'f', 'g', 'h', 'i', 'j')
+        subshell_labels = ('s', 'p', 'd', 'f', 'g', 'h', 'i', 'j')
         return subshell_labels[self.azimuthal_quantum_number]
 
     @property
     def spin_fraction(self) -> fractions.Fraction:
         spins = (None, 1, 1, 3, 3, 5, 5, 7, 7, 9)
-        return fractions.Fraction(spins[self.azimuthal_quantum_number], 2)
+        return fractions.Fraction(spins[self.subshell_index], 2)
 
 
 class PeriodicTable(metaclass=Singleton):
