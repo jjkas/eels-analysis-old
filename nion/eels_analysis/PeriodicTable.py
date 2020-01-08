@@ -137,11 +137,8 @@ class PeriodicTable(metaclass=Singleton):
                     if energy_interval_ev[0] <= energy <= energy_interval_ev[1]:
                         edges.append((abs(energy-energy_interval_center_ev), electron_shell))
 
-            if len(edges) > 0:
-                edges.sort(key=operator.itemgetter(0))
-                return [edge[1] for edge in edges]
-            else:
-                return None
+        edges.sort(key=operator.itemgetter(0))
+        return [edge[1] for edge in edges]
 
 
 
